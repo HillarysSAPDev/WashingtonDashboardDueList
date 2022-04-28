@@ -1,0 +1,29 @@
+/* Enter your custom styles here */
+/*Header Bar Design*/
+.sapMBar {
+    background-color: #101820 !important;
+    text-shadow: none;
+    box-shadow: none;
+}
+
+/*Header Bar Text Design*/
+.headerTitleDesign.sapMTitle {
+    color: #ffc62a !important;
+    text-shadow: none !important;
+}
+
+/*Header Bar Dialog Text Design*/
+.sapMDialog>header.sapMDialogTitle .sapMTitle {
+    color: #ffc62a;
+    text-shadow: none !important;
+}
+
+/*Header Bar Popup Text Design*/
+.sapMIBar-CTX .sapMTitle {
+    color: #ffc62a;
+    text-shadow: none !important;
+}
+/*Main Header*/
+.sapMBarTitleAlignAuto .sapMBarPH {
+    justify-content: center;
+}

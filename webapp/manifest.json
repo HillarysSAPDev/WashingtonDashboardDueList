@@ -19,7 +19,31 @@
 				"type": "OData",
 				"settings": {
 					"localUri": "localService/ZPROD_ORD_DET_SRV/metadata.xml",
-					"annotations": []
+					"annotations": [
+						"ODataAnnotation1",
+						"ODataAnnotation2"
+					]
+				}
+			},
+			"ODataAnnotation1": {
+				"uri": "",
+				"type": "ODataAnnotation",
+				"settings": {
+					"localUri": ""
+				}
+			},
+			"ODataAnnotation2": {
+				"uri": "",
+				"type": "ODataAnnotation",
+				"settings": {
+					"localUri": ""
+				}
+			},
+			"ZWUSERADMIN_SRV": {
+				"uri": "/sap/opu/odata/sap/ZWUSERADMIN_SRV/",
+				"type": "OData",
+				"settings": {
+					"localUri": "localService/ZWUSERADMIN_SRV/metadata.xml"
 				}
 			}
 		}
@@ -79,6 +103,16 @@
 					"defaultCountMode": "Request"
 				},
 				"dataSource": "ZPROD_ORD_DET_SRV",
+				"preload": true
+			},
+			"WDUserAdmin": {
+				"type": "sap.ui.model.odata.v2.ODataModel",
+				"settings": {
+					"defaultOperationMode": "Server",
+					"defaultBindingMode": "OneWay",
+					"defaultCountMode": "Request"
+				},
+				"dataSource": "ZWUSERADMIN_SRV",
 				"preload": true
 			}
 		},

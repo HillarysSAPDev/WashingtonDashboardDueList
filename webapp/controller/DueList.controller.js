@@ -8,7 +8,7 @@ sap.ui.define([
 	return Controller.extend("WashingtonDashboardDueList.WashingtonDashboardDueList.controller.DueList", {
 
 		onInit: function () {
-
+			debugger;
 			var oView = this.getView();
 
 			var oModel = new ODataModel("/sap/opu/odata/sap/ZPROD_ORD_DET_SRV/");
@@ -17,17 +17,49 @@ sap.ui.define([
 		},
 
 		onInitSmartFilterBarExtension: function (event) {
-			debugger;
+			var aFilters = [];
+
+			var filter;
+			var cellList = [];
+
+			// var userID = sap.ushell.Container.getService("UserInfo").getId();
+			var userID = "GNATARAJAN";
+			filter = new sap.ui.model.Filter("Uname", sap.ui.model.FilterOperator.EQ, userID);
+			aFilters.push(filter);
+
+			var smartFilterView = this.getView().byId("smartFilterBar");
+			var schFinishDate = smartFilterView.getControlByKey("Scheduledfinish");
+
+			var cellName = smartFilterView.getControlByKey("Cellname");
+
+			var oCellDataModel = this.getOwnerComponent().getModel("WDUserAdmin");
+			oCellDataModel.read("/ZUSER_CELL_LISTSet", {
+				filters: aFilters,
+
+				success: function (oData, oResponse) {
+					var results = oData.results;
+
+					results.forEach(function (cellname) {
+						var newToken = new Token({
+							key: cellname.Arbpl,
+							text: cellname.Arbpl
+						});
+						cellList.push(newToken);
+					});
+					cellName.setTokens(cellList);
+				},
+				error: function (oError) {
+					console.log(oError);
+				}
+			});
+
 			// Get the user type array from the session storage
 			var oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.session);
 			var date = oStorage.get("dueDate");
 
-			var schFinDateView = this.getView().byId("smartFilterBar");
-			var schFinishDate = schFinDateView.getControlByKey("Scheduledfinish");
-			var cellNameView = this.getView().byId("cellName");
-
 			var dateFormat = sap.ui.core.format.DateFormat.getDateInstance({
 				pattern: "YYYY-MM-dd"
+					// pattern: "dd.MM.YYYY"
 			});
 			if (date !== null) {
 				if (date === "Today") {
@@ -42,7 +74,14 @@ sap.ui.define([
 			} else {
 				var datetoDay = dateFormat.format(new Date());
 			}
+			var newTokenDate = new Token({
+				key: "=" + datetoDay,
+				text: "=" + datetoDay
+			});
+
 			schFinishDate.setValue(datetoDay);
+			// schFinishDate.setTokens(newTokenDate);
+			// schFinishDate.addToken(newTokenDate);
 		},
 		onBeforeExport: function (oEvt) {
 			var mExcelSettings = oEvt.getParameter("exportSettings");

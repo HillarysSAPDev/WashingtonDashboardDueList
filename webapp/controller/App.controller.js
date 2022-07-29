@@ -10,18 +10,14 @@ sap.ui.define([
 
 			var userDataArray;
 			var userData = [];
-			var userId;
-
-			// userId = sap.ushell.Container.getService("UserInfo").getUser();
 
 			if (hashText.length === 2) {
 				var dateFunc = hashText[1].split("=");
-				var dueDate = dateFunc[1];
+				var days = dateFunc[2];
 
 				//Save the user type data in the session storage
 				var oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.session);
-				oStorage.put("dueDate", date);
-				oStorage.put("userId", userId);
+				oStorage.put("Days", days);
 			}
 		}
 	});

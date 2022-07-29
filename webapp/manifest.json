@@ -65,6 +65,9 @@
 		}
 	},
 	"sap.ui5": {
+		"config": {
+			"fullWidth": true
+		},
 		"flexEnabled": false,
 		"rootView": {
 			"viewName": "WashingtonDashboardDueList.WashingtonDashboardDueList.view.App",
@@ -135,7 +138,7 @@
 			},
 			"routes": [
 				{
-					"name": "RouteApp",
+					"name": "TargetApp",
 					"pattern": "",
 					"target": [
 						"TargetApp"

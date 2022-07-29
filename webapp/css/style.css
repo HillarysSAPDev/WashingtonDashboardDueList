@@ -1,4 +1,17 @@
 /* Enter your custom styles here */
+/*Outer shell */
+.sapMShellCentralBox {
+    /* width: 50%; */
+    margin-left: 0% !important;
+    margin-right: 0% !important;
+    left: 0 !important;
+    width: 100% !important;
+}
+
+.sapMShellBrandingBar {
+    visibility: hidden;
+}
+
 /*Header Bar Design*/
 .sapMBar {
     background-color: #101820 !important;
@@ -23,6 +36,7 @@
     color: #ffc62a;
     text-shadow: none !important;
 }
+
 /*Main Header*/
 .sapMBarTitleAlignAuto .sapMBarPH {
     justify-content: center;

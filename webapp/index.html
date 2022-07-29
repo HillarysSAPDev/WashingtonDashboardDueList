@@ -14,6 +14,11 @@
 			data-sap-ui-async="true"
 			data-sap-ui-frameOptions="trusted">
 		</script>
+		<script>
+			sap.ui.getCore().attachInit(function(){newsap.m.Shell({   
+			    appWidthLimited:false
+			}));
+		</script>
 	</head>
 	<body class="sapUiBody">
 		<div data-sap-ui-component data-name="WashingtonDashboardDueList.WashingtonDashboardDueList" data-id="container" data-settings='{"id" : "WashingtonDashboardDueList"}'></div>

@@ -1,0 +1,37 @@
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+	xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+	<edmx:DataServices m:DataServiceVersion="2.0">
+		<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZWUSERADMIN_SRV" xml:lang="en" sap:schema-version="1">
+			<EntityType Name="ZUSER_CELL_LIST" sap:content-version="1">
+				<Key><PropertyRef Name="Uname"/></Key><Property Name="Uname" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="User Name" sap:creatable="false"
+					sap:updatable="false"/><Property Name="Arbpl" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Work Center" sap:creatable="false"
+					sap:updatable="false"/></EntityType>
+			<EntityType Name="CELLS" sap:content-version="1">
+				<Key><PropertyRef Name="CellName"/></Key><Property Name="CellName" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Work Center" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="ZCELL_UNMAPPED" sap:content-version="1">
+				<Key><PropertyRef Name="Uname"/></Key><Property Name="Uname" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="User Name" sap:creatable="false"
+					sap:updatable="false"/><Property Name="Arbpl" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Work Center" sap:creatable="false"
+					sap:updatable="false"/></EntityType>
+			<EntityType Name="USERID" sap:content-version="1">
+				<Key><PropertyRef Name="Uname"/></Key><Property Name="Uname" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="User Name" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><NavigationProperty Name="UserIdToCellNav" Relationship="ZWUSERADMIN_SRV.UserIdToCell" FromRole="FromRole_UserIdToCell"
+					ToRole="ToRole_UserIdToCell"/></EntityType>
+			<Association Name="UserIdToCell" sap:content-version="1"><End Type="ZWUSERADMIN_SRV.USERID" Multiplicity="*" Role="FromRole_UserIdToCell"/><End Type="ZWUSERADMIN_SRV.ZUSER_CELL_LIST" Multiplicity="*" Role="ToRole_UserIdToCell"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_UserIdToCell"><PropertyRef Name="Uname"/></Principal>
+					<Dependent Role="ToRole_UserIdToCell"><PropertyRef Name="Uname"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<EntityContainer Name="ZWUSERADMIN_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx"><EntitySet Name="ZUSER_CELL_LISTSet" EntityType="ZWUSERADMIN_SRV.ZUSER_CELL_LIST" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:content-version="1"/><EntitySet Name="CELLSSet" EntityType="ZWUSERADMIN_SRV.CELLS" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="ZCELL_UNMAPPEDSet" EntityType="ZWUSERADMIN_SRV.ZCELL_UNMAPPED" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:content-version="1"/><EntitySet Name="USERIDSet" EntityType="ZWUSERADMIN_SRV.USERID" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:content-version="1"/>
+				<AssociationSet Name="UserIdToCellSet" Association="ZWUSERADMIN_SRV.UserIdToCell" sap:creatable="false" sap:updatable="false"
+					sap:deletable="false" sap:content-version="1"><End EntitySet="USERIDSet" Role="FromRole_UserIdToCell"/><End EntitySet="ZUSER_CELL_LISTSet" Role="ToRole_UserIdToCell"/></AssociationSet>
+			</EntityContainer><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self"
+				href="http://sam-gw-dv.hillarys.net:40030/sap/opu/odata/sap/ZWUSERADMIN_SRV/$metadata"/><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version"
+				href="http://sam-gw-dv.hillarys.net:40030/sap/opu/odata/sap/ZWUSERADMIN_SRV/$metadata"/></Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

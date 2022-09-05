@@ -33,7 +33,7 @@ sap.ui.define([
 				var Day = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate() + parseFloat(days));
 				datetoDay = dateFormat.format(Day);
 			} else if (days == "0") {
-				var datetoDay = dateFormat.format(new Date());
+				datetoDay = dateFormat.format(new Date());
 			} else if (days == "-1") {
 				days = "0";
 				var dueDay = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate() + parseFloat(days));
@@ -48,7 +48,7 @@ sap.ui.define([
 			schFinishDate.setValue(datetoDay);
 		},
 		onBeforeRebindTable: function (oSource) {
-			if (datetoDay !== undefined) {
+			if (datetoDay === "") {
 				var binding = oSource.getParameter("bindingParams");
 				var oFilter = new sap.ui.model.Filter("Scheduledfinish", sap.ui.model.FilterOperator.LT, dueDate);
 				binding.filters.push(oFilter);

@@ -13,6 +13,7 @@
 			</smartFilterBar:SmartFilterBar>
 			<smartTable:SmartTable id="dueListId" entitySet="PORD_SCHSet" tableType="ResponsiveTable" useExportToExcel="true"
 				beforeExport="onBeforeExport" header="Due List Items" showRowCount="true" enableAutoBinding="true" class="sapUiResponsiveContentPadding"
+				app:useSmartToggle="true" smartFilterId="smartFilterBar" beforeRebindTable="onBeforeRebindTable"
 				initiallyVisibleFields="Productionorder,Salesorder,Salesorderitem,Cellname,Scheduledfinish,Material,Materialdescription,Totalorderquantity,Quantitydue,Statuscodes"/>
 		</content>
 	</Page>

@@ -1,24 +1,19 @@
 <mvc:View controllerName="WashingtonDashboardDueList.WashingtonDashboardDueList.controller.DueList" xmlns="sap.m" xmlns:core="sap.ui.core"
 	xmlns:mvc="sap.ui.core.mvc" xmlns:smartFilterBar="sap.ui.comp.smartfilterbar" xmlns:smartTable="sap.ui.comp.smarttable"
 	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
-	<App id="app">
-		<pages>
-			<Page id="page" title="{i18n>title}">
-				<content>
-					<smartFilterBar:SmartFilterBar id="smartFilterBar" entityType="PORD_SCH" initialise="onInitSmartFilterBarExtension">
-						<smartFilterBar:controlConfiguration>
-							<smartFilterBar:ControlConfiguration id="schFin" key="Scheduledfinish" visibleInAdvancedArea="true"
-								preventInitialDataFetchInValueHelpDialog="true"></smartFilterBar:ControlConfiguration>
-							<smartFilterBar:ControlConfiguration id="cellName" key="Cellname" visibleInAdvancedArea="true"
-								preventInitialDataFetchInValueHelpDialog="true"></smartFilterBar:ControlConfiguration>
-						</smartFilterBar:controlConfiguration>
-					</smartFilterBar:SmartFilterBar>
-					<smartTable:SmartTable id="dueListId" entitySet="PORD_SCHSet" tableType="ResponsiveTable" useExportToExcel="true"
-						beforeExport="onBeforeExport" header="Due List Items" showRowCount="true" enableAutoBinding="true" class="sapUiResponsiveContentPadding"
-						app:useSmartToggle="true" smartFilterId="smartFilterBar" beforeRebindTable="onBeforeRebindTable"
-						initiallyVisibleFields="Productionorder,Salesorder,Salesorderitem,Cellname,Scheduledfinish,Material,Materialdescription,Totalorderquantity,Quantitydue"/>
-				</content>
-			</Page>
-		</pages>
-	</App>
+	<Page id="page" showHeader="false">
+		<content>
+			<smartFilterBar:SmartFilterBar id="smartFilterBar" entityType="PORD_SCH" initialise="onInitSmartFilterBarExtension">
+				<smartFilterBar:controlConfiguration>
+					<smartFilterBar:ControlConfiguration id="schFin" key="Scheduledfinish" visibleInAdvancedArea="true"
+						preventInitialDataFetchInValueHelpDialog="true"></smartFilterBar:ControlConfiguration>
+					<smartFilterBar:ControlConfiguration id="cellName" key="Cellname" visibleInAdvancedArea="true"
+						preventInitialDataFetchInValueHelpDialog="true"></smartFilterBar:ControlConfiguration>
+				</smartFilterBar:controlConfiguration>
+			</smartFilterBar:SmartFilterBar>
+			<smartTable:SmartTable id="dueListId" entitySet="PORD_SCHSet" tableType="ResponsiveTable" useExportToExcel="true"
+				beforeExport="onBeforeExport" header="Due List Items" showRowCount="true" enableAutoBinding="true" class="sapUiResponsiveContentPadding"
+				initiallyVisibleFields="Productionorder,Salesorder,Salesorderitem,Cellname,Scheduledfinish,Material,Materialdescription,Totalorderquantity,Quantitydue,Statuscodes"/>
+		</content>
+	</Page>
 </mvc:View>

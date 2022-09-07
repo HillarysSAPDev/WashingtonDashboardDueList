@@ -12,9 +12,120 @@
 				</smartFilterBar:controlConfiguration>
 			</smartFilterBar:SmartFilterBar>
 			<smartTable:SmartTable id="dueListId" entitySet="PORD_SCHSet" tableType="ResponsiveTable" useExportToExcel="true"
-				beforeExport="onBeforeExport" header="Due List Items" showRowCount="true" enableAutoBinding="true" class="sapUiResponsiveContentPadding"
-				app:useSmartToggle="true" smartFilterId="smartFilterBar" beforeRebindTable="onBeforeRebindTable"
-				initiallyVisibleFields="Productionorder,Salesorder,Salesorderitem,Cellname,Scheduledfinish,Material,Materialdescription,Totalorderquantity,Quantitydue,Statuscodes"/>
+				beforeExport="onBeforeExport" header="Due List Items" showRowCount="true" enableAutoBinding="true" app:useSmartToggle="true"
+				smartFilterId="smartFilterBar" beforeRebindTable="onBeforeRebindTable"
+				initiallyVisibleFields="Productionorder,Salesorder,Salesorderitem,Cellname,Scheduledfinish,Material,Quantitydue,Statuscodes">
+				<Table>
+					<columns >
+						<!--<Column width="100px" hAlign="Left">-->
+						<!--	<customData>-->
+						<!--		<core:CustomData key="p13nData"-->
+						<!--			value='\{"columnKey": "Productionorder", "maxLength": "10","columnIndex":"0", "leadingProperty": "Productionorder"}'/>-->
+						<!--	</customData>-->
+						<!--	<Text text="Production Order"/>-->
+						<!--</Column>-->
+						<!--<Column width="100px" hAlign="Left">-->
+						<!--	<customData>-->
+						<!--		<core:CustomData key="p13nData" value='\{"columnKey": "Salesorder", "maxLength": "10","columnIndex":"1", "leadingProperty": "Salesorder"}'/>-->
+						<!--	</customData>-->
+						<!--	<Text text="Sales Order"/>-->
+						<!--</Column>-->
+						<!--<Column width="100px" hAlign="Left">-->
+						<!--	<customData>-->
+						<!--		<core:CustomData key="p13nData"-->
+						<!--			value='\{"columnKey": "Salesorderitem", "maxLength": "5","columnIndex":"2", "leadingProperty": "Salesorderitem"}'/>-->
+						<!--	</customData>-->
+						<!--	<Text text="Sales Order Item"/>-->
+						<!--</Column>-->
+						<!--<Column width="100px" hAlign="Left">-->
+						<!--	<customData>-->
+						<!--		<core:CustomData key="p13nData" value='\{"columnKey": "Cellname", "maxLength": "7","columnIndex":"3", "leadingProperty": "Cellname"}'/>-->
+						<!--	</customData>-->
+						<!--	<Text text="Work Center"/>-->
+						<!--</Column>-->
+						<!--<Column width="70px" hAlign="Left">-->
+						<!--	<customData>-->
+						<!--		<core:CustomData key="p13nData"-->
+						<!--			value='\{"columnKey": "Scheduledfinish", "maxLength": "10","columnIndex":"4", "leadingProperty": "Scheduledfinish"}'/>-->
+						<!--	</customData>-->
+						<!--	<Text text="Scheduled Finish Date"/>-->
+						<!--</Column>-->
+						<!--<Column width="100px" hAlign="Left">-->
+						<!--	<customData>-->
+						<!--		<core:CustomData key="p13nData" value='\{"columnKey": "Material", "maxLength": "20","columnIndex":"5", "leadingProperty": "Material"}'/>-->
+						<!--	</customData>-->
+						<!--	<Text text="Material"/>-->
+						<!--</Column>-->
+						<Column width="70px" hAlign="Left">
+							<customData>
+								<core:CustomData key="p13nData"
+									value='\{"columnKey": "Totalorderquantity", "maxLength": "3","columnIndex":"6", "leadingProperty": "Totalorderquantity", "sortProperty": "Totalorderquantity", "filterProperty": "Totalorderquantity"}'/>
+							</customData>
+							<Text text="Target Quantity"/>
+						</Column>
+						<!--<Column width="70px" hAlign="Left">-->
+						<!--	<customData>-->
+						<!--		<core:CustomData key="p13nData"-->
+						<!--			value='\{"columnKey": "Quantitydue", "maxLength": "3","columnIndex":"7", "leadingProperty": "Quantitydue","sortProperty": "Quantitydue", "filterProperty": "Quantitydue" }'/>-->
+						<!--	</customData>-->
+						<!--	<Text text="Quantity Due"/>-->
+						<!--</Column>-->
+						<!--<Column width="100px" hAlign="Left">-->
+						<!--	<customData>-->
+						<!--		<core:CustomData key="p13nData" value='\{"columnKey": "Statuscodes", "maxLength": "40","columnIndex":"8", "leadingProperty": "Statuscodes"}'/>-->
+						<!--	</customData>-->
+						<!--	<Text text="Status Codes"/>-->
+						<!--</Column>-->
+					</columns>
+					<items>
+						<!--<ColumnListItem>-->
+						<!--	<cells>-->
+						<!--		<Text text="{Productionorder}"/>-->
+						<!--	</cells>-->
+						<!--</ColumnListItem>-->
+						<!--<ColumnListItem>-->
+						<!--	<cells>-->
+						<!--		<Text text="{Salesorder}"/>-->
+						<!--	</cells>-->
+						<!--</ColumnListItem>-->
+						<!--	<ColumnListItem>-->
+						<!--		<cells>-->
+						<!--			<Text text="{Salesorderitem}"/>-->
+						<!--		</cells>-->
+						<!--	</ColumnListItem>-->
+						<!--<ColumnListItem>-->
+						<!--	<cells>-->
+						<!--		<Text text="{Cellname}"/>-->
+						<!--	</cells>-->
+						<!--</ColumnListItem>-->
+						<!--<ColumnListItem>-->
+						<!--	<cells>-->
+						<!--		<Text text="{Scheduledfinish}"/>-->
+						<!--	</cells>-->
+						<!--</ColumnListItem>-->
+						<!--<ColumnListItem>-->
+						<!--	<cells>-->
+						<!--		<Text text="{Material}"/>-->
+						<!--	</cells>-->
+						<!--</ColumnListItem>-->
+						<ColumnListItem>
+							<cells>
+								<Text text="{Totalorderquantity}"/>
+							</cells>
+						</ColumnListItem>
+						<!--<ColumnListItem>-->
+						<!--	<cells>-->
+						<!--		<Text text="{Quantitydue}"/>-->
+						<!--	</cells>-->
+						<!--</ColumnListItem>-->
+						<!--<ColumnListItem>-->
+						<!--	<cells>-->
+						<!--		<Text text="{Statuscodes}"/>-->
+						<!--	</cells>-->
+						<!--</ColumnListItem>-->
+					</items>
+				</Table>
+			</smartTable:SmartTable>
 		</content>
 	</Page>
 </mvc:View>

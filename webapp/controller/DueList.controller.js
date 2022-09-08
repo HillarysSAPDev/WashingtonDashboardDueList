@@ -48,6 +48,29 @@ sap.ui.define([
 			schFinishDate.setValue(datetoDay);
 		},
 		onBeforeRebindTable: function (oSource) {
+			var oST = this.getView().byId("dueListId").getTable();
+			var PO = oST.mAggregations.columns[0];
+			PO.setWidth("12rem");
+			var SO = oST.mAggregations.columns[1];
+			SO.setWidth("12rem");
+			var SOItem = oST.mAggregations.columns[2];
+			SOItem.setWidth("8rem");
+			var CellName = oST.mAggregations.columns[3];
+			CellName.setWidth("10rem");
+			var SchFin = oST.mAggregations.columns[4];
+			SchFin.setHAlign("Left");
+			SchFin.setWidth("12rem");
+			var Material = oST.mAggregations.columns[5];
+			Material.setWidth("20rem");
+			var TOQ = oST.mAggregations.columns[6];
+			TOQ.setWidth("8rem");
+			TOQ.setHAlign("Left");
+			var QuantityDue = oST.mAggregations.columns[7];
+			QuantityDue.setWidth("8rem");
+			QuantityDue.setHAlign("Left");
+			var Status = oST.mAggregations.columns[8];
+			Status.setWidth("40rem");
+
 			if (datetoDay === "") {
 				var binding = oSource.getParameter("bindingParams");
 				var oFilter = new sap.ui.model.Filter("Scheduledfinish", sap.ui.model.FilterOperator.LT, dueDate);

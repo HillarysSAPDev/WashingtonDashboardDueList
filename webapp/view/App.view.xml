@@ -1,8 +1,6 @@
 <mvc:View controllerName="WashingtonDashboardDueList.WashingtonDashboardDueList.controller.App" xmlns:mvc="sap.ui.core.mvc"
 	displayBlock="true" xmlns="sap.m">
 	<Shell id="shell">
-		<App id="app">
-			<pages></pages>
-		</App>
+		<App id="app"></App>
 	</Shell>
 </mvc:View>

@@ -50,18 +50,18 @@ sap.ui.define([
 		onBeforeRebindTable: function (oSource) {
 			var oST = this.getView().byId("dueListId").getTable();
 			var PO = oST.mAggregations.columns[0];
-			PO.setWidth("12rem");
+			PO.setWidth("10rem");
 			var SO = oST.mAggregations.columns[1];
-			SO.setWidth("12rem");
+			SO.setWidth("10rem");
 			var SOItem = oST.mAggregations.columns[2];
 			SOItem.setWidth("8rem");
 			var CellName = oST.mAggregations.columns[3];
 			CellName.setWidth("10rem");
 			var SchFin = oST.mAggregations.columns[4];
 			SchFin.setHAlign("Left");
-			SchFin.setWidth("12rem");
+			SchFin.setWidth("9rem");
 			var Material = oST.mAggregations.columns[5];
-			Material.setWidth("20rem");
+			Material.setWidth("9rem");
 			var TOQ = oST.mAggregations.columns[6];
 			TOQ.setWidth("8rem");
 			TOQ.setHAlign("Left");

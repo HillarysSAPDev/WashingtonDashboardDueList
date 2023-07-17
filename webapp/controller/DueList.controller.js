@@ -15,6 +15,20 @@ sap.ui.define([
 
 			var oModel = new ODataModel("/sap/opu/odata/sap/ZPROD_ORD_DET_SRV/");
 			oView.setModel(oModel);
+
+			//Set the default sort order for the table
+			var dueDataTableView = this.getView().byId("dueDataTable");
+			dueDataTableView.applyVariant({
+				sort: {
+					sortItems: [{
+						columnKey: "Scheduledfinish",
+						operation: "Descending"
+					}, {
+						columnKey: "Cellname",
+						operation: "Ascending"
+					}]
+				}
+			});
 		},
 
 		onInitSmartFilterBarExtension: function (event) {
@@ -47,36 +61,63 @@ sap.ui.define([
 
 			schFinishDate.setValue(datetoDay);
 		},
+
 		onBeforeRebindTable: function (oSource) {
-			var oST = this.getView().byId("dueListId").getTable();
-			var PO = oST.mAggregations.columns[0];
-			PO.setWidth("10rem");
-			var SO = oST.mAggregations.columns[1];
-			SO.setWidth("10rem");
-			var SOItem = oST.mAggregations.columns[2];
-			SOItem.setWidth("8rem");
-			var CellName = oST.mAggregations.columns[3];
-			CellName.setWidth("10rem");
-			var SchFin = oST.mAggregations.columns[4];
-			SchFin.setHAlign("Left");
-			SchFin.setWidth("9rem");
-			var Material = oST.mAggregations.columns[5];
-			Material.setWidth("9rem");
-			var TOQ = oST.mAggregations.columns[6];
-			TOQ.setWidth("8rem");
-			TOQ.setHAlign("Left");
-			var QuantityDue = oST.mAggregations.columns[7];
-			QuantityDue.setWidth("8rem");
-			QuantityDue.setHAlign("Left");
-			var Status = oST.mAggregations.columns[8];
-			Status.setWidth("40rem");
+			var dueDataTable = this.getView().byId("dueDataTable").getTable();
+
+			var schedFinishColumn = dueDataTable.mAggregations.columns[0];
+			schedFinishColumn.setHAlign("Left");
+			schedFinishColumn.setWidth("9rem");
+
+			var workCenterColumn = dueDataTable.mAggregations.columns[1];
+			workCenterColumn.setWidth("8rem");
+
+			var orderColumn = dueDataTable.mAggregations.columns[2];
+			orderColumn.setWidth("8rem");
+
+			var salesOrderColumn = dueDataTable.mAggregations.columns[3];
+			salesOrderColumn.setWidth("10rem");
+
+			var salesOrdItmColumn = dueDataTable.mAggregations.columns[4];
+			salesOrdItmColumn.setHAlign("Left");
+			salesOrdItmColumn.setWidth("9rem");
+
+			var materialColumn = dueDataTable.mAggregations.columns[5];
+			materialColumn.setWidth("8rem");
+
+			var targetQtyColumn = dueDataTable.mAggregations.columns[6];
+			targetQtyColumn.setWidth("8rem");
+			targetQtyColumn.setHAlign("Left");
+
+			var quantityDueColumn = dueDataTable.mAggregations.columns[7];
+			quantityDueColumn.setWidth("8rem");
+			quantityDueColumn.setHAlign("Left");
+
+			var statusCodesColumn = dueDataTable.mAggregations.columns[8];
+			statusCodesColumn.setWidth("40rem");
 
 			if (datetoDay === "") {
 				var binding = oSource.getParameter("bindingParams");
 				var oFilter = new sap.ui.model.Filter("Scheduledfinish", sap.ui.model.FilterOperator.LT, dueDate);
 				binding.filters.push(oFilter);
 			}
+
+			//Set the default sort order for the table
+			var dueDataTableView = this.getView().byId("dueDataTable");
+			dueDataTableView.applyVariant({
+				sort: {
+					sortItems: [{
+						columnKey: "Scheduledfinish",
+						operation: "Descending"
+					}, {
+						columnKey: "Cellname",
+						operation: "Ascending"
+					}]
+				}
+			});
+
 		},
+
 		onBeforeExport: function (oEvt) {
 			var mExcelSettings = oEvt.getParameter("exportSettings");
 			mExcelSettings.worker = false;

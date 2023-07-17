@@ -12,10 +12,10 @@
 				</smartFilterBar:controlConfiguration>
 			</smartFilterBar:SmartFilterBar>
 			<ScrollContainer horizontal="true">
-				<smartTable:SmartTable id="dueListId" entitySet="PORD_SCHSet" tableType="ResponsiveTable" useExportToExcel="true"
+				<smartTable:SmartTable id="dueDataTable" entitySet="PORD_SCHSet" tableType="ResponsiveTable" useExportToExcel="true"
 					beforeExport="onBeforeExport" header="Due List Items" showRowCount="true" enableAutoBinding="true" app:useSmartToggle="true"
 					smartFilterId="smartFilterBar" beforeRebindTable="onBeforeRebindTable"
-					initiallyVisibleFields="Productionorder,Salesorder,Salesorderitem,Cellname,Scheduledfinish,Material,Totalorderquantity,Quantitydue,Statuscodes"></smartTable:SmartTable>
+					initiallyVisibleFields="Scheduledfinish,Cellname,Productionorder,Salesorder,Salesorderitem,Material,Totalorderquantity,Quantitydue,Statuscodes"></smartTable:SmartTable>
 			</ScrollContainer>
 		</content>
 	</Page>

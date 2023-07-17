@@ -17,18 +17,7 @@ sap.ui.define([
 			oView.setModel(oModel);
 
 			//Set the default sort order for the table
-			var dueDataTableView = this.getView().byId("dueDataTable");
-			dueDataTableView.applyVariant({
-				sort: {
-					sortItems: [{
-						columnKey: "Scheduledfinish",
-						operation: "Descending"
-					}, {
-						columnKey: "Cellname",
-						operation: "Ascending"
-					}]
-				}
-			});
+			this.setDefaultSortOrder();
 		},
 
 		onInitSmartFilterBarExtension: function (event) {
@@ -100,7 +89,16 @@ sap.ui.define([
 				var binding = oSource.getParameter("bindingParams");
 				var oFilter = new sap.ui.model.Filter("Scheduledfinish", sap.ui.model.FilterOperator.LT, dueDate);
 				binding.filters.push(oFilter);
-			}
+			};
+
+		},
+
+		onBeforeExport: function (oEvt) {
+			var mExcelSettings = oEvt.getParameter("exportSettings");
+			mExcelSettings.worker = false;
+		},
+
+		setDefaultSortOrder: function (oEvt) {
 
 			//Set the default sort order for the table
 			var dueDataTableView = this.getView().byId("dueDataTable");
@@ -115,13 +113,7 @@ sap.ui.define([
 					}]
 				}
 			});
-
-		},
-
-		onBeforeExport: function (oEvt) {
-			var mExcelSettings = oEvt.getParameter("exportSettings");
-			mExcelSettings.worker = false;
-		},
+		}
 	});
 
 });

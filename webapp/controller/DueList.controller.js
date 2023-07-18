@@ -4,10 +4,12 @@ sap.ui.define([
 	"sap/m/Token",
 ], function (Controller, ODataModel, Token) {
 	"use strict";
-	var that;
+
 	var cellList = [];
-	var dueDate;
-	var datetoDay;
+	var GV_dueDate;
+	var GV_defaultDate;
+
+	var that;
 	return Controller.extend("WashingtonDashboardDueList.WashingtonDashboardDueList.controller.DueList", {
 
 		onInit: function () {
@@ -16,8 +18,18 @@ sap.ui.define([
 			var oModel = new ODataModel("/sap/opu/odata/sap/ZPROD_ORD_DET_SRV/");
 			oView.setModel(oModel);
 
-			//Set the default sort order for the table
-			this.setDefaultSortOrder();
+			// Get the user type array from the session storage
+			var oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.session);
+			var days = oStorage.get("Days");
+			debugger;
+			// Due In
+			if (days >= "0") {
+				this.setDefaultTableFormatDue();
+				// Overdue App
+			} else if (days === "-1") {
+				this.setDefaultTableFormatOverdue();
+
+			}
 		},
 
 		onInitSmartFilterBarExtension: function (event) {
@@ -32,23 +44,31 @@ sap.ui.define([
 			var dateFormat = sap.ui.core.format.DateFormat.getDateInstance({
 				pattern: "YYYY-MM-dd"
 			});
+
+			// Due In
 			if (days !== "-1" && days !== "0") {
 				var Day = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate() + parseFloat(days));
-				datetoDay = dateFormat.format(Day);
+				GV_defaultDate = dateFormat.format(Day);
+
+				// Due Today App 
 			} else if (days == "0") {
-				datetoDay = dateFormat.format(new Date());
+				GV_defaultDate = dateFormat.format(new Date());
+
+				// Overdue App
 			} else if (days == "-1") {
 				days = "0";
 				var dueDay = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate() + parseFloat(days));
-				dueDate = dateFormat.format(dueDay);
-				datetoDay = "";
+				GV_dueDate = dateFormat.format(dueDay);
+				GV_defaultDate = "";
+
 			}
+
 			var newTokenDate = new Token({
-				key: "=" + datetoDay,
-				text: "=" + datetoDay
+				key: "=" + GV_defaultDate,
+				text: "=" + GV_defaultDate
 			});
 
-			schFinishDate.setValue(datetoDay);
+			schFinishDate.setValue(GV_defaultDate);
 		},
 
 		onBeforeRebindTable: function (oSource) {
@@ -85,9 +105,9 @@ sap.ui.define([
 			var statusCodesColumn = dueDataTable.mAggregations.columns[8];
 			statusCodesColumn.setWidth("40rem");
 
-			if (datetoDay === "") {
+			if (GV_defaultDate === "") {
 				var binding = oSource.getParameter("bindingParams");
-				var oFilter = new sap.ui.model.Filter("Scheduledfinish", sap.ui.model.FilterOperator.LT, dueDate);
+				var oFilter = new sap.ui.model.Filter("Scheduledfinish", sap.ui.model.FilterOperator.LT, GV_dueDate);
 				binding.filters.push(oFilter);
 			};
 
@@ -98,10 +118,13 @@ sap.ui.define([
 			mExcelSettings.worker = false;
 		},
 
-		setDefaultSortOrder: function (oEvt) {
+		setDefaultTableFormatOverdue: function (oEvt) {
 
 			//Set the default sort order for the table
 			var dueDataTableView = this.getView().byId("dueDataTable");
+			dueDataTableView.setInitiallyVisibleFields(
+				"Scheduledfinish,Cellname,Productionorder,Salesorder,Salesorderitem,Material,Totalorderquantity,Quantitydue,Statuscodes");
+
 			dueDataTableView.applyVariant({
 				sort: {
 					sortItems: [{
@@ -109,6 +132,26 @@ sap.ui.define([
 						operation: "Descending"
 					}, {
 						columnKey: "Cellname",
+						operation: "Ascending"
+					}]
+				}
+			});
+		},
+
+		setDefaultTableFormatDue: function (oEvt) {
+
+			//Set the default sort order for the table
+			var dueDataTableView = this.getView().byId("dueDataTable");
+			dueDataTableView.setInitiallyVisibleFields(
+				"Cellname,Productionorder,Salesorder,Salesorderitem,Scheduledfinish,Material,Totalorderquantity,Quantitydue,Statuscodes");
+
+			dueDataTableView.applyVariant({
+				sort: {
+					sortItems: [{
+						columnKey: "Cellname",
+						operation: "Ascending"
+					}, {
+						columnKey: "Salesorder",
 						operation: "Ascending"
 					}]
 				}

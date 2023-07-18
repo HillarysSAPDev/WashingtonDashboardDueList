@@ -12,11 +12,17 @@
     visibility: hidden;
 }
 
+
+/*ALL Buttons*/
+.sapMBtnInner {
+    text-shadow: none;
+}
+
 /*Header Bar Design*/
 .sapMBar {
     background-color: #101820 !important;
-    text-shadow: none;
-    box-shadow: none;
+    text-shadow: none !important;
+    box-shadow: none !important;
 }
 
 /*Header Bar Text Design*/
@@ -26,18 +32,34 @@
 }
 
 /*Header Bar Dialog Text Design*/
-.sapMDialog>header.sapMDialogTitle .sapMTitle {
-    color: #ffc62a;
-    text-shadow: none !important;
-}
+/*.sapMDialog>header.sapMDialogTitle .sapMTitle {*/
+/*    color: #ffc62a !important;*/
+/*    text-shadow: none !important;*/
+/*}*/
 
-/*Header Bar Popup Text Design*/
-.sapMIBar-CTX .sapMTitle {
-    color: #ffc62a;
-    text-shadow: none !important;
-}
+
 
 /*Main Header*/
 .sapMBarTitleAlignAuto .sapMBarPH {
     justify-content: center;
 }
+
+/*///// Filter and Sort Table Settings Popup CSS /////*/
+
+/*Categories text*/
+.sapMITBTextOnly .sapMITBText {
+    font-size: .875rem;
+    text-shadow: none;
+    color: #fff !important;
+}
+
+/*Settings Popup Header Text Design*/
+.sapMIBar-CTX .sapMTitle {
+    color: #ffc62a !important;
+    text-shadow: none !important;
+    margin-left: 1rem !important;
+}
+
+
+
+/*END Main Page Body CSS*/

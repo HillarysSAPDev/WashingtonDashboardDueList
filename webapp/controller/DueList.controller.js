@@ -73,7 +73,7 @@ sap.ui.define([
 
 		onBeforeRebindTable: function (oSource) {
 			var dueDataTable = this.getView().byId("dueDataTable").getTable();
-
+			debugger;
 			var schedFinishColumn = dueDataTable.mAggregations.columns[0];
 			schedFinishColumn.setHAlign("Left");
 			schedFinishColumn.setWidth("9rem");

@@ -15,7 +15,9 @@
 				<smartTable:SmartTable id="dueDataTable" entitySet="PORD_SCHSet" tableType="ResponsiveTable" useExportToExcel="true"
 					beforeExport="onBeforeExport" header="Due List Items" showRowCount="true" enableAutoBinding="true" demandPopin="true"
 					app:useSmartToggle="true" smartFilterId="smartFilterBar" beforeRebindTable="onBeforeRebindTable"
-					initiallyVisibleFields="Scheduledfinish,Cellname,Productionorder,Salesorder,Salesorderitem,Material,Totalorderquantity,Quantitydue,Statuscodes"></smartTable:SmartTable>
+					initiallyVisibleFields="Scheduledfinish,Cellname,Productionorder,Salesorder,Salesorderitem,Material,Totalorderquantity,Quantitydue,Statuscodes">
+					<Table selectionChange="onRowSelect" mode="SingleSelectMaster"/>
+				</smartTable:SmartTable>
 			</ScrollContainer>
 		</content>
 	</Page>

@@ -5,7 +5,6 @@ sap.ui.define([
 ], function (Controller, ODataModel, Token) {
 	"use strict";
 
-	var cellList = [];
 	var GV_dueDate;
 	var GV_defaultDate;
 
@@ -13,6 +12,9 @@ sap.ui.define([
 	return Controller.extend("WashingtonDashboardDueList.WashingtonDashboardDueList.controller.DueList", {
 
 		onInit: function () {
+			that = this;
+			this.getRouter().getRoute("RouteDueList").attachMatched(this.onRouteMatched, this);
+
 			var oView = this.getView();
 
 			var oModel = new ODataModel("/sap/opu/odata/sap/ZPROD_ORD_DET_SRV/");
@@ -30,6 +32,16 @@ sap.ui.define([
 				this.setDefaultTableFormatOverdue();
 
 			}
+		},
+
+		getRouter: function () {
+			//Initialise the router 
+			return sap.ui.core.UIComponent.getRouterFor(this);
+		},
+
+		onRouteMatched: function (oEvent) {
+			var dueDataTableView = this.getView().byId("dueDataTable");
+			dueDataTableView.getTable().removeSelections(true);
 		},
 
 		onInitSmartFilterBarExtension: function (event) {
@@ -156,7 +168,39 @@ sap.ui.define([
 					}]
 				}
 			});
-		}
+		},
+
+		//Get and display details section fucntions
+		onRowSelect: function (oEvent) {
+
+			var oSmartTable = this.getView().byId("dueDataTable");
+			var oSelectedValuePath = oSmartTable.getTable().getSelectedContextPaths();
+			var oData = oSelectedValuePath.toString().split('/');
+
+			var oDataModel = oSmartTable.getTable().getModel();
+			var IPLData = oDataModel.oData;
+
+			var selectedRowData = IPLData[oData[1]];
+
+			var inputDataArray = {
+				"Barcode": "",
+				"ProdOrdNo": selectedRowData.ProdOrd,
+				"SalesOrdNo": selectedRowData.SalesOrd,
+				"LineItem": selectedRowData.SalesItm,
+				"BoxID": ""
+			};
+
+			//Save the user type data in the session storage
+			var oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.session);
+			oStorage.put("inputData", inputDataArray);
+
+			this.navigateToDetailsView();
+		},
+
+		navigateToDetailsView: function () {
+
+			this.getRouter().navTo("RouteDetails");
+		},
 	});
 
 });

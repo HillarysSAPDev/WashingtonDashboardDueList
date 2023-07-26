@@ -138,23 +138,32 @@
 			},
 			"routes": [
 				{
-					"name": "TargetApp",
+					"name": "RouteDueList",
 					"pattern": "",
 					"target": [
-						"TargetApp"
+						"TargetDueList"
+					]
+				},
+				{
+					"name": "RouteDetails",
+					"pattern": "TargetDetails",
+					"target": [
+						"TargetDetails"
 					]
 				}
 			],
 			"targets": {
-				"TargetApp": {
+				"TargetDueList": {
 					"viewType": "XML",
 					"transition": "slide",
 					"viewName": "DueList",
 					"viewLevel": 1
 				},
-				"DueList": {
+				"TargetDetails": {
 					"viewType": "XML",
-					"viewName": "DueList"
+					"viewName": "DetailsView",
+					"transition": "slide",
+					"viewLevel": 2
 				}
 			}
 		}

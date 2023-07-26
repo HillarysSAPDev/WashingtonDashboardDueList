@@ -1,0 +1,11 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+	controllerName="WashingtonDashboardDueList.WashingtonDashboardDueList.controller.DetailsView" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page id="page" showHeader="false">
+		<content>
+			<FlexBox height="0vh" justifyContent="End">
+				<Button text="Back to List" press="onBackBtnPress" class="backButton sapUiTinyMarginTop"/>
+			</FlexBox>
+			<html:iframe id="iFrame" height="100%" width="100%" frameBorder="0" scrolling="no" Content="no-cache"/>
+		</content>
+	</Page>
+</mvc:View>
